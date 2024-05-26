@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Property</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .add-property {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .add-property .plus-icon {
+            margin-right: 10px;
+            font-size: 36px; /* Adjust the font size for an even larger icon */
+        }
+        /* Hide the file input */
+        #file-input {
+            display: none;
+        }
+        .logo {
+            width: 100px; /* Adjust the width of the logo */
+            height: auto;
+            margin-bottom: 20px; /* Add some space below the logo */
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <img src="path/to/your/logo.png" alt="Logo" class="logo">
+
+    <!-- Hidden file input -->
+    <input type="file" id="file-input" onchange="previewImage(event)" accept="image/*">
+
+    <div class="add-property" onclick="triggerFileInput()">
+        <i class="fas fa-plus plus-icon"></i>
+        <span>Add Property</span>
+    </div>
+
+    <div>
+        <a href="index.html">Back Home</a>
+    </div>
+
+    <script>
+        // Function to trigger file input click event
+        function triggerFileInput() {
+            document.getElementById('file-input').click();
+        }
+
+        // Function to preview selected image
+        function previewImage(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(){
+                var imgElement = document.createElement('img');
+                imgElement.src = reader.result;
+                document.body.appendChild(imgElement); // You can append the image wherever you want
+                // Here, you can add logic to handle the uploaded image, such as uploading it to a server or processing it further
+            }
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
